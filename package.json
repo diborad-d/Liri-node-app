@@ -4,7 +4,8 @@
   "description": "`Liri`  is a _cli_ node app that lets you search songs, bands in town and movies through a command line.",
   "main": "keys.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "liri.js"
   },
   "repository": {
     "type": "git",
