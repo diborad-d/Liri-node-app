@@ -1,11 +1,11 @@
 {
-  "name": "Liri-node-app",
+  "name": "liri-node-app",
   "version": "1.0.0",
   "description": "`Liri`  is a _cli_ node app that lets you search songs, bands in town and movies through a command line.",
-  "main": "keys.js",
+  "main": "liri.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "liri.js"
+    "start": "node liri.js"
   },
   "repository": {
     "type": "git",
@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/diborad-d/Liri-node-app#readme",
   "dependencies": {
-    "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "moment": "^2.24.0",
-    "node-spotify-api": "^1.1.1"
+    "node-spotify-api": "^1.1.1",
+    "axios": "^0.19.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+  
+  }
 }

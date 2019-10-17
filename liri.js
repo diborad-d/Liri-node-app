@@ -1,41 +1,52 @@
 const axios = require("axios");
 
-axios
-  .get("http://www.omdbapi.com/?i=tt3896198&apikey=22c5d793")
-  .then(function(response) {
-    console.log("The movie name is :" + response.data.imdbName);
-    console.log("Release year:" + response.data.imdbReleaseYear);
-    console.log("Cast:" + response.data.imdbCast);
-    console.log("Rating:" + response.data.imdbRating);
-  })
-  .catch(function(error) {
-    if (error.response) {
-      console.log("---------------Data---------------");
-      console.log(error.response.data);
-      console.log("---------------Status---------------");
-      console.log(error.response.status);
-      console.log("---------------Status---------------");
-      console.log(error.response.headers);
-    }else if(error.request){
-            console.log(error.request)
-    }else{
-            console.log("Error",error.message)
-    }
-    console.log(error.config);
-  });
-
-require("dotenv").config();
-var keys = require("./keys.js");
-
 const command = process.argv[2];
-const argument = process.argv[3];
-
-//check what command is being run
 if (command === "movie-this") {
-  console.log(argument);
+  movieThis();
+} else {
+  console.log("Please use a valid command..toodloo~");
 }
 
-var spotify = new IMDB(keys.IMDB);
+function movieThis() {
+  var nodeArgs = process.argv;
+  var movieName = nodeArgs[3];
+  for (var i = 4; i < nodeArgs.length; i++) {
+    if (i < nodeArgs.length) {
+      movieName += `+${nodeArgs[i]}`;
+    }
+  }
+
+  const queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&i=tt3896198&apikey=22c5d793";
+  console.log(queryUrl);
+  axios
+    .get(queryUrl)
+    .then(function(response) {
+      console.log(`The movie name is: ${response.data.Title}`);
+      console.log(`Release year: ${response.data.Year}`);
+      console.log(`Cast: ${response.data.Actors}`);
+      console.log(`Genre: ${response.data.Genre}`);
+      console.log(`Rating: ${response.data.Rated}`);
+    })
+    .catch(function(error) {
+      if (error.response) {
+        console.log("---------------Data---------------");
+        console.log(error.response.data);
+        console.log("---------------Status---------------");
+        console.log(error.response.status);
+        console.log("---------------Status---------------");
+        console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log("Error", error.message);
+      }
+      console.log(error.config);
+    });
+}
+// require("dotenv").config();
+// var keys = require("./keys.js");
+
+// var imdb = new IMDB(keys.IMDB); // only for spotify
 
 // * `concert-this`
 
